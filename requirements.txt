@@ -1,3 +1,5 @@
 Flask
 Gunicorn
 requests
+psycopg2
+python-dotenv

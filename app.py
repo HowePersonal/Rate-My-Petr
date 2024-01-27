@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory
+from flask import Flask
 from requests import get
 import os
 from flask import render_template, request
