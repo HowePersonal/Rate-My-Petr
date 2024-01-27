@@ -21,11 +21,22 @@
 
 				<!-- Professor Name Input -->
 				<div class="row-1-input">
-					<input
+					<!-- <input
 						type="text"
 						id="professorName"
 						name="professorName"
-						placeholder="Enter Professor Name" />
+						placeholder="Enter Professor Name" /> -->
+                    <select class="" id="professorDropdown">
+
+                    </select>
+                    <select class="" id="gradeDropdown">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="F">F</option>
+                        <option value="N/A">N/A</option>
+                    </select>
 
 					<input
 						type="text"
@@ -38,6 +49,12 @@
 						id="enjoyment"
 						name="number-input"
 						placeholder="Enjoyment (1-5)" />
+                    <input
+						type="text"
+						id="comment"
+						name="comment-input"
+						placeholder="What did you think about the class?" />
+                    <button id="submitReview" onclick="submitReview()">Submit Review</button>
 				</div>
 			</div>
 		</div>

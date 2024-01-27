@@ -25,18 +25,18 @@
 			<!-- Course Code # input-->
 			<div class="number-input">
 				<input
-					placeholder="Course Code"
+					placeholder="Course Number"
 					type="text"
-					id="courseCode"
-					name="courseCode" />
+					id="courseNumber"
+					name="courseNumber" />
 			</div>
 
 			<!-- Search Button (Submit Button) -->
-			<button class="search-button">Search</button>
+			<button class="search-button" onclick="searchClass()">Search</button>
 		</div>
 
 		<!-- Course Listings -->
-		<div class="course-list-container">
+		<div class="course-list-container" style="display: none;">
 			<table class="course-list">
 				<thead>
 					<tr>
