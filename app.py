@@ -74,13 +74,19 @@ def updateRating():
         return "Unsuccessful update"
 
 @app.route('/api/getClassRatings/<classId>', methods=['GET'])
-def getRatings(classId):
+def getClassRatings(classId):
     try:
         rating_records = db.getClassRatings(classId)
         return rating_records
     except Exception as e:
-        return "Unsuccessful when trying to get ratings"
+        return "Unsuccessful when trying to get class ratings"
     
-
+@app.route('/api/getInstructorRatings/<instructorId>', methods=['GET'])
+def getInstructorRatings(instructorId):
+    try:
+        rating_records = db.getInstructorRatings(instructorId)
+        return rating_records
+    except Exception as e:
+        return "Unsuccessful when trying to get instructor ratings"
 #ACT LIKE THIS IS THE MAIN FUNCTION DW ABOUT IT
 # setClasses()

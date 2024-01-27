@@ -32,3 +32,8 @@ POST /api/deleteRating
 
 GET /api/getClassRatings/:classId
     - Params: classId
+    - Body: None
+
+GET /api/getInstructorRatings/:instructorId
+    - Params: instructorId
+    - Body: None
