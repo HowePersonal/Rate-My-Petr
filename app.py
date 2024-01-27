@@ -19,15 +19,15 @@ def getClasses(id):
 
 def setClasses():
     classes = get('https://api.peterportal.org/rest/v0/courses/all').json()
-    for i in range(100):
+    for i in range(len(classes)):
         CLASSES[classes[i]['id']] = classes[i]
 
-setClasses()
-
+#SERVER HTML FILES
 @app.route('/<path:filename>')
 def serve_frontend(filename):
     print(filename)
     return render_template(filename)
 
-# if __name__ == '__main__':
-#     app.run()
+
+#ACT LIKE THIS IS THE MAIN FUNCTION DW ABOUT IT
+setClasses()
