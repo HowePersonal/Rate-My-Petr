@@ -18,6 +18,9 @@ SEARCH:
 
 
 REVIEW PAGE:
+- CATEGORIES
+- Difficulty (STARS), Enjoyment (STARS), Comment (TEXT), Grade (DROPDOWN), Instructor (DROPDOWN)
+
 - Allow users to create a review
     - If they already have, have that review near the top with some indication that they could edit or trash it
 
