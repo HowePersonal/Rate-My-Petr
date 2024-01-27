@@ -8,28 +8,18 @@ import database
 app = Flask(__name__)
 db = database.database()
 
-CLASSES = {}
-
+#SERVER HTML FILES
 @app.route('/')
 def hello():
-    return 'Hello, World! O'
+    return render_template('search.html')
 
-@app.route('/getClassById/<id>')
-def getClasses(id):
-    if CLASSES.get(id) is None:
-        return 'Class not found'
-    return CLASSES[id]
-
-def setClasses():
-    classes = get('https://api.peterportal.org/rest/v0/courses/all').json()
-    for i in range(len(classes)):
-        CLASSES[classes[i]['id']] = classes[i]
-
-#SERVER HTML FILES
 @app.route('/<path:filename>')
 def serve_frontend(filename):
     print(filename)
-    return render_template(filename)
+    try:
+        return render_template(filename)
+    except:
+        return render_template('pageNotFound.html')
 
 @app.route('/api/insertRating', methods=['POST'])
 def insertRating():
@@ -88,5 +78,3 @@ def getInstructorRatings(instructorId):
         return rating_records
     except Exception as e:
         return "Unsuccessful when trying to get instructor ratings"
-#ACT LIKE THIS IS THE MAIN FUNCTION DW ABOUT IT
-# setClasses()
