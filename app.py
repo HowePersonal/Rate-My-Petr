@@ -25,7 +25,7 @@ def setClasses():
 
 setClasses()
 
-@app.route('/frontend/<path:filename>')
+@app.route('/<path:filename>')
 def serve_frontend(filename):
     print(filename)
     return render_template(filename)
