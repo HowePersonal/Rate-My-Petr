@@ -2,8 +2,26 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding-top: 5px;
+	gap: 5px;
 
 	/* border: 2px solid red; */
+}
+
+.drop-menu {
+	background-color: rgb(91, 91, 91);
+	border-radius: 10px;
+	font-size: 18px;
+}
+.number-input input{
+	background-color: rgb(91, 91, 91);
+	border: none;
+	border-radius: 10px;
+	padding: 5px;
+
+	outline: none;
+	color: white;
+	font-size: 18px;
 }
 
 #quantity {
@@ -32,8 +50,43 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid white;
 	color: white;
+	
 	font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
 		monospace;
+}
+
+/* Add spacing to the table and its elements */
+.course-list-container {
+    margin: 20px; /* Adjust the margin as needed */
+}
+
+.course-list {
+    width: 100%;
+	border-collapse: collapse;
+    /* overflow: hidden; */
+	/* border: 1px solid white; */
+	border-radius: 15px;
+	/* border-radius: 15px; */
+	
+}
+
+.course-list th, .course-list td {
+    padding: 10px; /* Adjust the padding as needed */
+    text-align: left;
+    border: 1px solid #ddd; /* Add borders to cells */
+    /* border-radius: 15px; */
+	
+}
+
+/* Style the table header */
+.course-list th {
+    background-color: rgb(40, 39, 39);
+	
+}
+
+
+/* Hover effect for rows */
+.course-list tbody tr:hover {
+    background-color: rgb(64, 64, 64);
 }
