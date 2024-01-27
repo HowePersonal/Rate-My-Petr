@@ -17,17 +17,16 @@ def getClasses(id):
         return 'Class not found'
     return CLASSES[id]
 
-def setClasses():
-    classes = get('https://api.peterportal.org/rest/v0/courses/all').json()
-    for i in range(len(classes)):
-        CLASSES[classes[i]['id']] = classes[i]
-
 #SERVER HTML FILES
 @app.route('/<path:filename>')
 def serve_frontend(filename):
     print(filename)
     return render_template(filename)
 
+def setClasses():
+    classes = get('https://api.peterportal.org/rest/v0/courses/all').json()
+    for i in range(len(classes)):
+        CLASSES[classes[i]['id']] = classes[i]
 
 #ACT LIKE THIS IS THE MAIN FUNCTION DW ABOUT IT
 setClasses()
