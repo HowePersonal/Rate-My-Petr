@@ -1,3 +1,30 @@
+
+
+// window.onload = function() {
+//     var selectElement = document.getElementById('menu');
+//     var options = selectElement.options;
+//     var list = [];
+
+//     for (var i = 0; i < options.length; i++) {
+//         var optionValue = options[i].value;
+//         var optionText = options[i].innerText;
+//         list.push({value: optionValue, text: optionText});
+//     }
+//     console.log(list)
+// }
+
+window.onload = function() {
+    var selectElement = document.getElementById('menu');
+
+
+    for (var i = 0; i < CLASS_OPTION_DATA.length; i++) {
+        var option = document.createElement('option');
+        option.value = CLASS_OPTION_DATA[i].value;
+        option.innerText = CLASS_OPTION_DATA[i].text;
+        selectElement.appendChild(option);
+    }
+}
+
 function generateReviewHTML(div, difficulty, enjoyment, comment, grade, instructor) {
     // Create a new <div> element
     const reviewDiv = document.createElement('div');
