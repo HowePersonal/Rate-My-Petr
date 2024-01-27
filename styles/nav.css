@@ -1,0 +1,14 @@
+.navbar{
+    background-color : #0064A4;
+    color : white;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    font-family: Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+
+.nav-title{
+    color : #ffd200;
+    text-align: center;
+}
+
+
