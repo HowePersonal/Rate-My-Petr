@@ -40,16 +40,46 @@ def insertRating():
         difficulty_rating = data['difficultyRating']
         comment = data['comment']
         grade = data['grade']
-        added_timestamp = time.time()
-        instructor = data['instructor']
-        print(f'class_id {class_id} enjoyment_rating {enjoyment_rating} comment {comment} added_timestamp {added_timestamp} instructor {instructor}')
-        db.insertRating(class_id, str(enjoyment_rating), str(difficulty_rating), comment, grade, str(int(added_timestamp)), instructor)
+        instructor_id = data['instructorId']
+        db.insertRating(class_id, str(enjoyment_rating), str(difficulty_rating), comment, grade, instructor_id)
         
         return "Successful insertion"
 
     except Exception as e:
-        print(e)
         return "Unsuccessful insertion"
+
+@app.route('/api/deleteRating', methods=['POST'])
+def deleteRating():
+    try:
+        data = request.get_json()
+        rating_id = data['ratingId']
+        db.deleteRating(rating_id)
+        return "Successful deletion"
+    except Exception as e:
+        return "Unsuccessful deletion"
+
+@app.route('/api/updateRating', methods=['POST'])
+def updateRating():
+    try:
+        data = request.get_json()
+        class_id = data['classId']
+        enjoyment_rating = data['enjoymentRating']
+        difficulty_rating = data['difficultyRating']
+        comment = data['comment']
+        grade = data['grade']
+        instructor_id = data['instructorId']
+        db.updateRating(class_id, str(enjoyment_rating), str(difficulty_rating), comment, grade, instructor_id)
+        return "Successful update"
+    except Exception as e:
+        return "Unsuccessful update"
+
+@app.route('/api/getClassRatings/<classId>', methods=['GET'])
+def getRatings(classId):
+    try:
+        
+        
+    except Exception as e:
+        return "Unsuccessful when trying to get ratings"
     
 
 #ACT LIKE THIS IS THE MAIN FUNCTION DW ABOUT IT

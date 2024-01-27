@@ -21,11 +21,29 @@ class database:
         
     
 
-    def insertRating(self, class_id, enjoyment_rating, difficulty_rating, comment, grade, added_timestamp, instructor):
+    def insertRating(self, class_id, enjoyment_rating, difficulty_rating, comment, grade, instructor_id):
         self.cur.execute('INSERT INTO ratings(class_id, enjoyment_rating, difficulty_rating, comment, \
-                         grade, added_timestamp, instructor) VALUES (%s, %s, %s, %s, %s, %s)', (class_id, enjoyment_rating, difficulty_rating, comment,
-                                                           grade, instructor))
+                         grade, instructor_id) VALUES (%s, %s, %s, %s, %s, %s)', (class_id, enjoyment_rating, difficulty_rating, comment,
+                                                           grade, instructor_id))
         self.conn.commit()
+    
+    def updateRating(self, class_id, enjoyment_rating, difficulty_rating, comment, grade, instructor_id):
+        self.cur.execute('UPDATE ratings \
+                        SET enjoyment_rating = %s, \
+                            difficulty_rating = %s, \
+                            comment = %s, \
+                            grade = %s, \
+                            instructor_id = %s \
+                        WHERE class_id = %s', (enjoyment_rating, difficulty_rating, comment, grade, instructor_id, class_id))
+        self.conn.commit()
+    
+    def deleteRating(self, rating_id):
+        self.cur.execute('DELETE FROM ratings \
+                     WHERE id = %s', (rating_id,))
+        self.conn.commit()
+    
+    def getClassRatings(self, class_id):
+        self.cur.execute('')
     
     def close(self):
         self.cur.close()
