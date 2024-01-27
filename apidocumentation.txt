@@ -1,0 +1,34 @@
+POST /api/insertRating
+    - Params: None
+    - Body: {
+                "classId": "",
+                "enjoymentRating": x, 
+                "difficultyRating": x,
+                "comment": "",
+                "grade": "",
+                "instructorId": ""
+            }
+
+
+POST /api/updateRating
+    - Params: None
+    - Body: {
+                "classId": "",
+                "enjoymentRating": x, 
+                "difficultyRating": x,
+                "comment": "",
+                "grade": "",
+                "instructorId": ""
+            }
+
+
+POST /api/deleteRating
+    - Params: None
+    - Body: {
+                "ratingId": "",
+            }
+
+
+
+GET /api/getClassRatings/:classId
+    - Params: classId
