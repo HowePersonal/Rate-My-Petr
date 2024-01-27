@@ -4,11 +4,21 @@
     padding-bottom: 30px;
     padding-top: 30px;
     font-family: Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    display: flex;
 }
 
 .nav-title{
     color : #ffd200;
-    text-align: center;
+    /* text-align: center; */
+    margin: auto;
+    font-size: x-large;
+    text-decoration: none;
+    transition: font-size 0.2s ease;
 }
 
+.nav-title:hover{
+    font-size: xx-large;
+    cursor: pointer;
+}
+    
 
