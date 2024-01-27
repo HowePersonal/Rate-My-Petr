@@ -48,22 +48,12 @@
 	font-family: arial;
 }
 
-input[type="text"] {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
-}
-input[type="text"]:focus {
-	border-color: #007bff;
-	outline: none;
-}
-
-.row-1-input {
+.row-input {
 	display: flex;
 	align-items: center;
 	column-gap: 15px;
+	margin-bottom: 15px;
+	width: 50%;
 }
 
 .professor-label {
@@ -74,4 +64,59 @@ input[type="text"]:focus {
 
 .number-input {
 	width: 10px;
+	font-size: 18px;
+}
+
+.prof-drop-down {
+	padding: 9px;
+	font-size: 18px;
+	border-radius: 5px;
+}
+
+.grade-drop-down {
+	text-align: left;
+	font-size: 18px;
+	padding: 9px;
+	border-radius: 5px;
+}
+
+.comment-input {
+	width: 100%;
+	font-size: 15px;
+}
+
+.submit-btn {
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	font-size: 15px;
+	background-color: #3498db;
+	color: white;
+}
+
+.stu-review-container {
+	font-family: arial;
+	background-color: rgb(99, 99, 99);
+	padding: 15px;
+	border-radius: 10px;
+	color: rgb(232, 232, 232);
+	width: 40%;
+}
+
+.all-stu-review-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid red;
+}
+
+.review-title {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 8px;
+	font-size: 18px;
+}
+
+.review-comment {
+	/* font-size: 18px; */
 }
