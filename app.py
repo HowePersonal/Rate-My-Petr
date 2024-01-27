@@ -2,7 +2,6 @@ from flask import Flask, send_from_directory
 from requests import get
 import os
 from flask import render_template
-from flask import render_template
 
 app = Flask(__name__)
 
@@ -30,5 +29,5 @@ def serve_frontend(filename):
     print(filename)
     return render_template(filename)
 
-if __name__ == '__main__':
-    app.run()
+# if __name__ == '__main__':
+#     app.run()
