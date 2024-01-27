@@ -4,6 +4,7 @@ import os
 from flask import render_template, request
 import time
 import database
+import math
 
 app = Flask(__name__)
 db = database.database()
@@ -28,8 +29,11 @@ def setClasses():
 #SERVER HTML FILES
 @app.route('/<path:filename>')
 def serve_frontend(filename):
-    print(filename)
     return render_template(filename)
+
+# @app.route('/professor/<professorNetId>')
+# def serve_professor(professorNetId):
+#     return render_template("professor.html")
 
 @app.route('/api/insertRating', methods=['POST'])
 def insertRating():
@@ -88,5 +92,18 @@ def getInstructorRatings(instructorId):
         return rating_records
     except Exception as e:
         return "Unsuccessful when trying to get instructor ratings"
+    
+@app.route('/api/getClassStatistics/<classId>', methods=['GET'])
+def getClassStatistics(classId):
+    try:
+        rating_records = db.getClassRatings(classId)
+        avg_enjoyment = 0
+        avg_difficulty = 0
+        for record in rating_records:
+            avg_enjoyment += int(record["enjoyment_rating"])
+            avg_difficulty += int(record["difficulty_rating"])
+        return {"avg_enjoyment": math.floor(avg_enjoyment/len(rating_records)), "avg_difficulty": math.floor(avg_difficulty/len(rating_records))}
+    except Exception as e:
+        return "Unsuccessfull when trying to get class statistics"
 #ACT LIKE THIS IS THE MAIN FUNCTION DW ABOUT IT
 # setClasses()

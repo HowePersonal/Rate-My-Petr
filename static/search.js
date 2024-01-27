@@ -18,8 +18,6 @@ async function verifyClassExists(department, num){
     });
 
     data = await response.json()
-    console.log(data)
-
     if (data.statusCode % 100 == 4){
         alert("Class does not exist.")
         return false;
