@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="static/global.css">
     <link rel="stylesheet" href="static/body.css">
     <title>RateMyPeter</title>
+    <script src="static/index.js" defer></script>
   </head>
 
   <body>
@@ -29,8 +30,49 @@
         </div>
         <button class="search-button">Search</button>
     </div>
-    <div>
-        <!-- Other content goes here -->
+    <div id="userComment">
+        <div class="review-container">
+            <h2>Write a Review</h2>
+            <div class="rating-container">
+                <label for="difficulty">Difficulty:</label>
+                <input type="range" id="difficulty" name="difficulty" min="1" max="5">
+                <span id="difficulty-value">3</span>
+            </div>
+            <div class="rating-container">
+                <label for="enjoyment">Enjoyment:</label>
+                <input type="range" id="enjoyment" name="enjoyment" min="1" max="5">
+                <span id="enjoyment-value">3</span>
+            </div>
+            <div class="comment-container">
+                <label for="comment">Comment:</label>
+                <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
+            </div>
+            <div class="dropdown-container">
+                <label for="grade">Grade:</label>
+                <select id="grade" name="grade">
+                    <option value="" disabled selected>Select a grade</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </div>
+            <div class="dropdown-container">
+                <label for="instructor">Instructor:</label>
+                <select id="instructor" name="instructor">
+                    <option value="" disabled selected>Select an instructor</option>
+                    <option value="John Doe">John Doe</option>
+                    <option value="Jane Smith">Jane Smith</option>
+                    <option value="Mike Johnson">Mike Johnson</option>
+                </select>
+            </div>
+            <button class="submit-button">Submit Review</button>
+        </div>
     </div>
+    <div id="reviews">
+        
+    </div>
+    <div></div>
   </body>
 </html>
