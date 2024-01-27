@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="../static/nav.css" />
+		<link rel="stylesheet" href="../static/global.css" />
+		<link rel="stylesheet" href="../static/search.css" />
+
+		<title>RateMyPeter</title>
+		<script src="../static/data.js" defer></script>
+		<script src="../static/index.js" defer></script>
+	</head>
+
+	<body>
+		<div class="navbar">
+			<div class="nav-title">RateMyPeter</div>
+		</div>
+		<!-- Input For Dept & Course Code -->
+		<div class="input-container">
+			<!-- Drop Down -->
+			<div class="dropdown">
+				<select class="drop-menu" id="menu"></select>
+			</div>
+
+			<!-- Course Code # input-->
+			<div class="number-input">
+				<input
+					placeholder="Course Code"
+					type="text"
+					id="courseCode"
+					name="courseCode" />
+			</div>
+
+			<!-- Search Button (Submit Button) -->
+			<button class="search-button">Search</button>
+		</div>
+
+		<!-- Course Listings -->
+		<div class="course-list-container">
+			<table class="course-list">
+				<thead>
+					<tr>
+						<th>Code</th>
+						<th>Name</th>
+						<th>Difficulty</th>
+						<th>Enjoyment</th>
+						<th>Reviews</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>001</td>
+						<td>HTML</td>
+						<td>Easy</td>
+						<td>High</td>
+						<td>100</td>
+					</tr>
+					<tr>
+						<td>002</td>
+						<td>CSS</td>
+						<td>Medium</td>
+						<td>Medium</td>
+						<td>80</td>
+					</tr>
+					<tr>
+						<td>003</td>
+						<td>JavaScript</td>
+						<td>Hard</td>
+						<td>High</td>
+						<td>120</td>
+					</tr>
+					<!-- Add more rows as needed -->
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

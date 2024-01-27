@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="../static/nav.css" />
+		<link rel="stylesheet" href="../static/global.css" />
+		<link rel="stylesheet" href="../static/review.css" />
+
+		<title>RateMyPeter</title>
+		<script src="../static/data.js" defer></script>
+		<script src="../static/index.js" defer></script>
+	</head>
+
+	<body>
+		<div class="navbar">
+			<div class="nav-title">RateMyPeter</div>
+		</div>
+		<div id="userComment">
+			<div class="review-container">
+				<h2>Write a Review</h2>
+
+				<!-- Professor Name Input -->
+				<div class="row-1-input">
+					<input
+						type="text"
+						id="professorName"
+						name="professorName"
+						placeholder="Enter Professor Name" />
+
+					<input
+						type="text"
+						id="difficulty"
+						name="number-input"
+						placeholder="Difficulty (1-5)" />
+
+					<input
+						type="text"
+						id="enjoyment"
+						name="number-input"
+						placeholder="Enjoyment (1-5)" />
+				</div>
+			</div>
+		</div>
+		<div id="reviews"></div>
+	</body>
+</html>

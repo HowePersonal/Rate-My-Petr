@@ -1,0 +1,77 @@
+.input-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	/* border: 2px solid red; */
+}
+
+#quantity {
+	width: 50px; /* Adjust the width as needed */
+	padding: 5px;
+	font-size: 16px;
+}
+
+.search-button {
+	background-color: #3498db; /* Blue color */
+	color: #fff; /* White text */
+	padding: 10px 15px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+/* Container */
+.course-list-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.review-container {
+	/* Flexbox */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	/* Colors */
+	background-color: #2c2c2c;
+
+	/* Spacing */
+	padding: 20px;
+
+	/* Color */
+	color: white;
+
+	/* Font Family */
+	font-family: arial;
+}
+
+input[type="text"] {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+input[type="text"]:focus {
+	border-color: #007bff;
+	outline: none;
+}
+
+.row-1-input {
+	display: flex;
+	align-items: center;
+	column-gap: 15px;
+}
+
+.professor-label {
+	/* text-align: center; */
+	margin-right: 10px;
+	white-space: nowrap;
+}
+
+.number-input {
+	width: 10px;
+}
