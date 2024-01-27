@@ -10,48 +10,57 @@ app = Flask(__name__)
 # db = database.database()
 
 
-def getClassById(id):
-    try:
-        course = get('https://api-next.peterportal.org/v1/rest/courses/' + id).json()['payload']
-        return course
-    except:
-        return "Class Not Found"
+# def getClassById(id):
+#     try:
+#         course = get('https://api-next.peterportal.org/v1/rest/courses/' + id).json()['payload']
+#         return course
+#     except:
+#         return "Class Not Found"
+    
+def addArgsToUrl(url, args):
+    if args:
+        for key in args:
+            url += key + '=' + args[key] + '&'
+    return url
 
 @app.route('/')
 def hello():
-    return 'Hello, World!'
+    return 'PETR'
 
 
-@app.route('/getClassById/<id>')
-def getClassByIdEndpoint(id):
-    return getClassById(id)
-
-
-@app.route('/getProfsFromClassId/<id>')
-def getProfs(id):
-    profsList = []
-    classInfo = getClassById(id)
-    print(classInfo)
-    for i in range(len(classInfo['instructors'])):
-        profsList.append(get('https://api-next.peterportal.org/v1/rest/instructors/' + classInfo['instructors'][i]['ucinetid']).json())
-    
-    profsWithoutPayload = []
-    for prof in profsList:
-        profsWithoutPayload.append(prof['payload'])
-    return profsWithoutPayload
-
-@app.route('/getGradesFromClassId/<id>')
-def getGrades(id):
-    course = getClassById(id)
-    department = course['department']
-    number = course['courseNumber']
-
-    url = 'https://api-next.peterportal.org/v1/rest/grades/aggregate?courseNumber=' + number + '&department=' + department
-    # args = request.get_json()
-    # for key in args:
-    #     url += key + '=' + args[key] + '&'
-
+@app.route('/api/getClass')
+def getClasses():
+    url = 'https://api-next.peterportal.org/v1/rest/courses?'
+    url = addArgsToUrl(url, request.args)
     return get(url).json()['payload']
+
+
+@app.route('/api/getProf/<ucinetid>')
+def getProfs(ucinetid):
+    url = 'https://api-next.peterportal.org/v1/rest/instructors/' + ucinetid
+    # url = addArgsToUrl(url, request.args)
+    return get(url).json()['payload']
+
+
+@app.route('/api/getGradesFromClass')
+def getGrades():
+    url = 'https://api-next.peterportal.org/v1/rest/grades/aggregate?'
+    url = addArgsToUrl(url, request.args)
+    
+    return get(url).json()['payload']
+
+# @app.route('/api/getProfsFromClassId/<id>')
+# def getProfs(id):
+#     profsList = []
+#     classInfo = getClassById(id)
+#     print(classInfo)
+#     for i in range(len(classInfo['instructors'])):
+#         profsList.append(get('https://api-next.peterportal.org/v1/rest/instructors/' + classInfo['instructors'][i]['ucinetid']).json())
+    
+#     profsWithoutPayload = []
+#     for prof in profsList:
+#         profsWithoutPayload.append(prof['payload'])
+#     return profsWithoutPayload
 
 
 @app.route('/api/insertRating', methods=['POST'])
@@ -74,9 +83,24 @@ def insertRating():
         print(e)
         return "Unsuccessful insertion"
     
+# TODO:
+# Fix this function
+# Get ratings from course ID
+# Optionally we might want to get ratings from intructor ucinetid
+@app.route('/api/getRatings')
+def getRatings():
+    try:
+        data = request.get_json()
+        class_id = data['classId']
+        # return db.getRatings(class_id)
+    except:
+        return "Unsuccessful retrieval"
+    
 
 #SERVER HTML FILES
 @app.route('/<path:filename>')
 def serve_frontend(filename):
-    print(filename)
-    return render_template(filename)
+    try:
+        return render_template(filename)
+    except:
+        return "PATH NOT FOUND"

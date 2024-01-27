@@ -1,0 +1,35 @@
+USERS:
+- Default anonymous
+- Have name in upper right corner, can click at any time to set a name or go back to anonymous (if changed name)
+    - MAKE SURE THIS OPTION / NAME IS STORED AND LOADED IN LOCAL STORAGE
+- Every time a user submits a review, use local storage to keep track of that review (store review id that was generated in db)
+
+    LATER:
+    - Allow users to delete or change their review
+
+SEARCH:
+- Can search by department or number (must include one but not necessarily both)
+- If both added
+    - Immediately go to page
+- If one added
+    - Give a list of possible classes and let the user click on the page they want to go to
+- If invalid
+    - Tell user that the class dont exist
+
+
+REVIEW PAGE:
+- Allow users to create a review
+    - If they already have, have that review near the top with some indication that they could edit or trash it
+
+- See review list below of other people
+    - If there are none say something like "looks like no one has reviewed this class be the first" or smth
+
+FILTER (NICE TO HAVE):
+- Filter by prof (include only messages for certain prof)
+
+
+EXTRAS:
+
+Prof page:
+- Have prof with list of classes that theyve taught (can click on)
+- Show their avg grade / avg enjoyment
