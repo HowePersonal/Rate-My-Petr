@@ -61,7 +61,7 @@ async function setProfessorInfo(data) {
         td1.innerText = course;
         tr.appendChild(td1);
 
-        let avgs = ['N/A', 'N/A','N/A','N/A']
+        let avgs = ['N/A', 'N/A','N/A',0]
         if (data[i].department + data[i].courseNumber in courseAvgs){
             avgs = courseAvgs[data[i].department + data[i].courseNumber]
         }
