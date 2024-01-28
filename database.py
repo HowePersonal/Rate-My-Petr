@@ -2,6 +2,7 @@ import os
 import psycopg2
 from dotenv import load_dotenv
 import time
+import math
 
 load_dotenv()
 
@@ -55,11 +56,15 @@ class database:
                  "comment": record[4], "grade": record[5], "added_timestamp": record[6], "instructor_id": record[7]} for record in rating_records]
 
     def getDepartmentRatings(self, departmentName):
-        self.cur.execute(f"SELECT * FROM ratings WHERE class_id like '{departmentName}%'")
+        self.cur.execute(f"SELECT class_id, avg(difficulty_rating), avg(enjoyment_rating), count(id) FROM ratings WHERE class_id like '{departmentName}%' GROUP BY class_id")
         rating_records = self.cur.fetchall()
-        return [{"id": record[0], "class_id": record[1], "enjoyment_rating": record[2], "difficulty_rating": record[3],
-                 "comment": record[4], "grade": record[5], "added_timestamp": record[6], "instructor_id": record[7]} for record in rating_records]
+        return {record[0] : {"difficulty_rating": round(float(record[1]), 2), "enjoyment_rating": round(float(record[2]), 2), "count": record[3]} for record in rating_records}
     
+    def getClassCodeRatings(self, classCode):
+        self.cur.execute(f"SELECT class_id, avg(difficulty_rating), avg(enjoyment_rating), count(id) FROM ratings WHERE class_id like '%{classCode}' GROUP BY class_id")
+        rating_records = self.cur.fetchall()
+        return {record[0] : {"difficulty_rating": round(float(record[1]), 2), "enjoyment_rating": round(float(record[2]), 2), "count": record[3]} for record in rating_records}
+
     def close(self):
         self.cur.close()
         self.conn.close()

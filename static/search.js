@@ -28,20 +28,30 @@ async function verifyClassExists(department, num){
 
 async function generateClassList(department, num){
     let url = 'https://api-next.peterportal.org/v1/rest/courses?'
-
+    let backendAPIUrl = 'http://127.0.0.1:5000/api/'
     if (department.length > 0){
         url += 'department=' + department;
+        backendAPIUrl += 'getDepartmentRatings/' + department
     }
     else if (num.length > 0){
         url += 'courseNumber=' + num;
+        backendAPIUrl += 'getClassCodeRatings/' + num
     }
     const response = await fetch(url, {
         method: 'GET'
     });
+    console.log(backendAPIUrl)
+    const responseAPI = await fetch(backendAPIUrl, {
+        method: 'GET'
+    })
 
     data = await response.json()
-    console.log(data)
+    //console.log(data)
     data = await data.payload;
+
+
+    ratingData = await responseAPI.json()
+    console.log(ratingData)
 
     
     data.sort((a, b) => a.courseNumeric - b.courseNumeric);
@@ -53,6 +63,18 @@ async function generateClassList(department, num){
     let tbody = document.getElementById('classList');
     tbody.innerHTML = '';
     for (let i = 0; i < data.length; i++) {
+        let courseId = data[i].id
+        let difficulty = "N/A"
+        let enjoyment = "N/A"
+        let count = '0'
+        if (courseId in ratingData) {
+            difficulty = ratingData[courseId].difficulty_rating
+            enjoyment = ratingData[courseId].enjoyment_rating
+            count = ratingData[courseId].count
+        }
+
+
+        
         let tr = document.createElement('tr');
         
         let td1 = document.createElement('td');
@@ -61,15 +83,15 @@ async function generateClassList(department, num){
         tr.appendChild(td1);
         
         let td2 = document.createElement('td');
-        td2.innerText = 'N/A'
+        td2.innerText = difficulty
         tr.appendChild(td2);
 
         let td3 = document.createElement('td');
-        td3.innerText = 'N/A'
+        td3.innerText = enjoyment
         tr.appendChild(td3);
 
         let td4 = document.createElement('td');
-        td4.innerText = 'N/A'
+        td4.innerText = count
         tr.appendChild(td4);
         tbody.appendChild(tr);
 
