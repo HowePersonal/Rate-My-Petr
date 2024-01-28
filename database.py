@@ -54,6 +54,12 @@ class database:
         return [{"id": record[0], "class_id": record[1], "enjoyment_rating": record[2], "difficulty_rating": record[3],
                  "comment": record[4], "grade": record[5], "added_timestamp": record[6], "instructor_id": record[7]} for record in rating_records]
 
+    def getDepartmentRatings(self, departmentName):
+        self.cur.execute(f"SELECT * FROM ratings WHERE class_id like '{departmentName}%'")
+        rating_records = self.cur.fetchall()
+        return [{"id": record[0], "class_id": record[1], "enjoyment_rating": record[2], "difficulty_rating": record[3],
+                 "comment": record[4], "grade": record[5], "added_timestamp": record[6], "instructor_id": record[7]} for record in rating_records]
+    
     def close(self):
         self.cur.close()
         self.conn.close()

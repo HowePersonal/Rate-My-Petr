@@ -2,7 +2,7 @@
 
 CREATE TABLE IF NOT EXISTS ratings (
     id serial PRIMARY KEY,
-    class_id INTEGER NOT NULL,
+    class_id VARCHAR(100) NOT NULL,
     enjoyment_rating INTEGER NOT NULL,
     difficulty_rating INTEGER NOT NULL,
     comment VARCHAR(300),

@@ -110,5 +110,17 @@ def getInstructorStatistics(instructorId):
     except Exception as e:
         return {"avg_enjoyment": "N/A", "avg_difficulty": "N/A"}
 
+@app.route('/api/getDepartmentStatistics/<departmentName>')
+def getDepartmentStatistics(departmentName):
+    try:
+        rating_records = db.getDepartmentRatings(departmentName)
+        for record in rating_records:
+            avg_enjoyment += int(record["enjoyment_rating"])
+            avg_difficulty += int(record["difficulty_rating"])
+        return {"avg_enjoyment": math.floor(avg_enjoyment/len(rating_records)), "avg_difficulty": math.floor(avg_difficulty/len(rating_records))}
+    
+    except Exception as e:
+        return {"avg_enjoyment": "N/A", "avg_difficulty": "N/A"}
+
 #ACT LIKE THIS IS THE MAIN FUNCTION DW ABOUT IT
 # setClasses()
