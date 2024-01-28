@@ -11,21 +11,16 @@ db = database.database()
 
 #SERVER HTML FILES
 @app.route('/')
-def serve_search():
+def hello():
     return render_template('search.html')
 
-@app.route('/review')
-def serve_review():
-    return render_template('review.html')
-
-@app.route('/professor')
-def serve_professor():
-    return render_template('professor.html')
-
-@app.errorhandler(404) 
-def default_handler(e):
-    return render_template('pageNotFound.html')
-
+@app.route('/<path:filename>')
+def serve_frontend(filename):
+    print(filename)
+    try:
+        return render_template(filename)
+    except:
+        return render_template('pageNotFound.html')
 
 # @app.route('/professor/<professorNetId>')
 # def serve_professor(professorNetId):
@@ -41,12 +36,12 @@ def insertRating():
         comment = data['comment']
         grade = data['grade']
         instructor_id = data['instructorId']
-        db.insertRating(class_id, str(enjoyment_rating), str(difficulty_rating), comment, grade, instructor_id)
-        return "Successful insertion"
+        inserted_id = db.insertRating(class_id, str(enjoyment_rating), str(difficulty_rating), comment, grade, instructor_id)
+        
+        return {"insertedId": inserted_id}
 
     except Exception as e:
-        print(e)
-        return e
+        return "Unsuccessful insertion"
 
 @app.route('/api/deleteRating', methods=['POST'])
 def deleteRating():
@@ -89,12 +84,6 @@ def getInstructorRatings(instructorId):
     except Exception as e:
         return []
     
-
-#TODO: IMPLEMENT THIS
-#Be able to search for class statistics by department ONLY
-#Be able to search for class statistics by number ONLY
-#http://127.0.0.1:5000/api/getClassStatistics?department=compsci
-
 @app.route('/api/getClassStatistics/<classId>', methods=['GET'])
 def getClassStatistics(classId):
     try:
@@ -108,8 +97,6 @@ def getClassStatistics(classId):
     except Exception as e:
         return {"avg_enjoyment": "N/A", "avg_difficulty": "N/A"}
 
-#TODO: IMPLEMENT THIS
-# GET STAT AVERAGES FOR EACH INDIVIDUAL CLASS ASSOCIATED WITH AN INSTRUCTOR
 @app.route('/api/getInstructorStatistics/<instructorId>', methods=['GET'])
 def getInstructorStatistics(instructorId):
     try:

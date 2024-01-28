@@ -20,9 +20,11 @@ class database:
 
     def insertRating(self, class_id, enjoyment_rating, difficulty_rating, comment, grade, instructor_id):
         self.cur.execute('INSERT INTO ratings(class_id, enjoyment_rating, difficulty_rating, comment, \
-                         grade, instructor_id) VALUES (%s, %s, %s, %s, %s, %s)', (class_id, enjoyment_rating, difficulty_rating, comment,
+                         grade, instructor_id) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id', (class_id, enjoyment_rating, difficulty_rating, comment,
                                                            grade, instructor_id))
+        inserted_id = self.cur.fetchone()[0]
         self.conn.commit()
+        return inserted_id
     
     def updateRating(self, class_id, enjoyment_rating, difficulty_rating, comment, grade, instructor_id):
         self.cur.execute('UPDATE ratings \
@@ -51,7 +53,7 @@ class database:
         rating_records = self.cur.fetchall()
         return [{"id": record[0], "class_id": record[1], "enjoyment_rating": record[2], "difficulty_rating": record[3],
                  "comment": record[4], "grade": record[5], "added_timestamp": record[6], "instructor_id": record[7]} for record in rating_records]
-    
+
     def close(self):
         self.cur.close()
         self.conn.close()
