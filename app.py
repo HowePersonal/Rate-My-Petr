@@ -22,6 +22,10 @@ def serve_review():
 def serve_professor():
     return render_template('professor.html')
 
+@app.errorhandler(404) 
+def default_handler(e):
+    return render_template('pageNotFound.html')
+
 
 # @app.route('/professor/<professorNetId>')
 # def serve_professor(professorNetId):
