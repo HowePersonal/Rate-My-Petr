@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="../static/search.css" />
 
 		<title>RateMyPeter</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="../static/data.js" defer></script>
 		<script src="../static/search.js" defer></script>
 	</head>
@@ -18,9 +18,8 @@
 			<!-- <div class="img-container">
 				<img src="../assets/ptr.png" alt="PetrSticker" style = "width: 5%">
 			</div> -->
-			
 		</div>
-		
+
 		<!-- Input For Dept & Course Code -->
 		<div class="input-container">
 			<!-- Drop Down -->
@@ -31,18 +30,23 @@
 			<!-- Course Code # input-->
 			<div class="number-input">
 				<input
-					placeholder="Number"
+					placeholder="Class Number (EX: 45C)"
 					type="text"
 					id="courseNumber"
 					name="courseNumber" />
 			</div>
 
 			<!-- Search Button (Submit Button) -->
-			<button class="search-button" onclick="searchClass()">Search</button>
+			<button class="search-button" onclick="searchClass()">
+				Search
+			</button>
 		</div>
 
 		<!-- Course Listings -->
-		<div class="course-list-container" id="course-list-container" style="display: none;">
+		<div
+			class="course-list-container"
+			id="course-list-container"
+			style="display: none">
 			<table class="course-list">
 				<thead>
 					<tr>
@@ -52,9 +56,7 @@
 						<th>Reviews</th>
 					</tr>
 				</thead>
-				<tbody id="classList">
-                    
-				</tbody>
+				<tbody id="classList"></tbody>
 			</table>
 		</div>
 	</body>
