@@ -14,10 +14,10 @@ function setProfs() {
 
 	// Clear existing options
 	selectDropdown.innerHTML = "";
-    const option = document.createElement("option");
-    option.value = '';
-    option.textContent = 'Select Prof';
-    selectDropdown.appendChild(option);
+	const option = document.createElement("option");
+	option.value = "";
+	option.textContent = "Select Prof";
+	selectDropdown.appendChild(option);
 	// Add options for each instructor
 	DATA.instructors.forEach((instructor) => {
 		const option = document.createElement("option");
@@ -44,63 +44,63 @@ async function fetchClass() {
 }
 
 function findProfFromID(id) {
-    return DATA.instructors.find((instructor) => instructor.ucinetid === id);
+	return DATA.instructors.find((instructor) => instructor.ucinetid === id);
 }
 function findIdFromProf(prof) {
-    return DATA.instructors.find((instructor) => instructor.name === prof);
+	return DATA.instructors.find((instructor) => instructor.name === prof);
 }
 
 async function submitReview() {
-    const professorDropdown = document.getElementById("professorDropdown");
-    const gradeDropdown = document.getElementById("gradeDropdown");
-    const difficultyInput = document.getElementById("difficulty");
-    const enjoymentInput = document.getElementById("enjoyment");
-    const commentTextarea = document.getElementById("comment");
- 
-    const instructorId = professorDropdown.value;
-    const grade = gradeDropdown.value;
-    const difficultyRating = difficultyInput.value;
-    const enjoymentRating = enjoymentInput.value;
-    const comment = commentTextarea.value;
+	const professorDropdown = document.getElementById("professorDropdown");
+	const gradeDropdown = document.getElementById("gradeDropdown");
+	const difficultyInput = document.getElementById("difficulty");
+	const enjoymentInput = document.getElementById("enjoyment");
+	const commentTextarea = document.getElementById("comment");
 
-    let range = ['1', '2', '3', '4', '5'];
-    if (!range.includes(difficultyRating) || !range.includes(enjoymentRating)){
-        alert("Please enter a rating between 1 and 5.");
-        return;
-    }
-    console.log(instructorId)
-    if (instructorId.length == 0){
-        alert("Please select a professor.");
-        return;
-    }
-    if (grade.length == 0){
-        alert("Please select a grade.");
-        return;
-    }
-    // Create the review object
-    const review = {
-        instructorId,
-        grade,
-        difficultyRating,
-        enjoymentRating,
-        comment,
-        classId
-    };
-    console.log(review)
-    // Perform the POST request to submit the review
-    const response = await fetch("api/insertRating", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(review)
-    })
-    console.log(response)
-    if (response.status === 200) {
-        alert("Review submitted successfully!");
-    }else{
-        alert("Something went wrong. Please try again.");
-    }
+	const instructorId = professorDropdown.value;
+	const grade = gradeDropdown.value;
+	const difficultyRating = difficultyInput.value;
+	const enjoymentRating = enjoymentInput.value;
+	const comment = commentTextarea.value;
+
+	let range = ["1", "2", "3", "4", "5"];
+	if (!range.includes(difficultyRating) || !range.includes(enjoymentRating)) {
+		alert("Please enter a rating between 1 and 5.");
+		return;
+	}
+	console.log(instructorId);
+	if (instructorId.length == 0) {
+		alert("Please select a professor.");
+		return;
+	}
+	if (grade.length == 0) {
+		alert("Please select a grade.");
+		return;
+	}
+	// Create the review object
+	const review = {
+		instructorId,
+		grade,
+		difficultyRating,
+		enjoymentRating,
+		comment,
+		classId,
+	};
+	console.log(review);
+	// Perform the POST request to submit the review
+	const response = await fetch("api/insertRating", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(review),
+	});
+	console.log(response);
+	if (response.status === 200) {
+		alert("Review submitted successfully!");
+	} else {
+		alert("Something went wrong. Please try again.");
+	}
 }
 
 function generateReviewHTML(
@@ -117,11 +117,8 @@ function generateReviewHTML(
 
 	const nameDiv = document.createElement("div");
 	const dateDiv = document.createElement("div");
-    const profLink = document.createElement("a");
-    profLink.href = findIdFromProf(instructor);
-    
 
-	nameDiv.innerHTML = `Prof : <a href='professor?profnetid=${findIdFromProf(instructor).ucinetid}'>${instructor}</a>`;
+	nameDiv.textContent = `Prof : ${instructor}`;
 	dateDiv.textContent = date;
 
 	// Title Section of Review
@@ -137,6 +134,7 @@ function generateReviewHTML(
 
 	commentLabel.textContent = "Course Remarks";
 	commentContent.textContent = comment;
+	commentContent.classList.add("comment-content");
 	commentDiv.classList.add("review-comment");
 	commentLabel.classList.add("review-label");
 
@@ -172,39 +170,39 @@ function generateReviewHTML(
 }
 
 async function loadReviews() {
-    let url ="api/getClassRatings/" + departmentParam + numberParam;
+	let url = "api/getClassRatings/" + departmentParam + numberParam;
 	const response = await fetch(url, {
 		method: "GET",
 	});
 
 	data = await response.json();
-    console.log(data)
-    let div = document.getElementById("reviews");
+	console.log(data);
+	let div = document.getElementById("reviews");
 	div.classList.add("all-stu-review-container");
 
-    for (let i = 0; i < data.length; i++){
-        let review = data[i];
-        console.log(review)
-        let prof = findProfFromID(review.instructor_id);
-        const addedDate = new Date(review.added_timestamp);
-        const formattedDate = addedDate.toLocaleDateString();
-        generateReviewHTML(
-            div,
-            review.difficulty_rating,
-            review.enjoyment_rating,
-            review.comment,
-            review.grade,
-            prof.name,
-            formattedDate
-        );
-    }
+	for (let i = 0; i < data.length; i++) {
+		let review = data[i];
+		console.log(review);
+		let prof = findProfFromID(review.instructor_id);
+		const addedDate = new Date(review.added_timestamp);
+		const formattedDate = addedDate.toLocaleDateString();
+		generateReviewHTML(
+			div,
+			review.difficulty_rating,
+			review.enjoyment_rating,
+			review.comment,
+			review.grade,
+			prof.name,
+			formattedDate
+		);
+	}
 }
 
 function main() {
 	fetchClass();
 	// let div = document.getElementById("reviews");
 	// div.classList.add("all-stu-review-container");
-    loadReviews();
+	loadReviews();
 	// generateReviewHTML(
 	// 	div,
 	// 	5,

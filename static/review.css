@@ -53,7 +53,7 @@
 	align-items: center;
 	column-gap: 15px;
 	margin-bottom: 15px;
-    width: 50%;
+	width: 50%;
 }
 
 .professor-label {
@@ -136,7 +136,54 @@
 	margin-bottom: 40px;
 }
 
+.input-container {
+	display: flex;
+	column-gap: 15px;
+}
 
-textarea {
-    height: 100px;
+/* Styles for screens with a maximum width of 768px */
+@media (max-width: 1250px) {
+	.row-input {
+		row-gap: 15px;
+		flex-wrap: wrap;
+	}
+
+	.review-title {
+		font-size: 16px;
+	}
+
+	.review-label {
+		font-size: 14px;
+	}
+
+	.review-stats-row {
+		font-size: 14px;
+	}
+
+	.comment-content {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 1250px) {
+	.row-input {
+		row-gap: 15px;
+		flex-wrap: wrap;
+	}
+
+	.review-title {
+		font-size: 14px;
+	}
+
+	.review-label {
+		font-size: 12px;
+	}
+
+	.review-stats-row {
+		font-size: 12px;
+	}
+
+	.comment-content {
+		font-size: 12px;
+	}
 }
