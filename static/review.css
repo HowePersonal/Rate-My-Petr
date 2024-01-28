@@ -107,7 +107,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid red;
 }
 
 .review-title {
@@ -124,6 +123,15 @@
 	font-size: 18px;
 }
 
-.review-comment {
-	/* font-size: 18px; */
+.review-stats-row {
+	margin-top: 15px;
+	display: flex;
+	column-gap: 15px;
+}
+
+.reviews {
+	display: flex;
+	flex-direction: column;
+	row-gap: 25px;
+	margin-bottom: 40px;
 }

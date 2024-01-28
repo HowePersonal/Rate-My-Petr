@@ -86,16 +86,21 @@ function generateReviewHTML(
 	const enjoymentDiv = document.createElement("div");
 	const difficultyDiv = document.createElement("div");
 
-	gradeDiv.textContent = grade;
-	enjoymentDiv.textContent = enjoyment;
-	difficultyDiv.textContent = difficulty;
+	gradeDiv.textContent = `Grade : ${grade}`;
+	enjoymentDiv.textContent = `Enjoyment : ${enjoyment}`;
+	difficultyDiv.textContent = `Difficulty : ${difficulty}`;
+	lowerRow.appendChild(gradeDiv);
+	lowerRow.appendChild(enjoymentDiv);
+	lowerRow.appendChild(difficultyDiv);
+	lowerRow.classList.add("review-stats-row");
 
 	// // Append all the elements to the review <div>
 	// reviewDiv.appendChild(instructorHeading);
 	// reviewDiv.appendChild(difficultyPara);
-	// reviewDiv.appendChild(enjoymentPara);
+
 	reviewDiv.appendChild(titleDiv);
 	reviewDiv.appendChild(commentDiv);
+	reviewDiv.appendChild(lowerRow);
 
 	reviewDiv.classList.add("stu-review-container");
 
@@ -107,6 +112,26 @@ function main() {
 	fetchClass();
 	let div = document.getElementById("reviews");
 	div.classList.add("all-stu-review-container");
+
+	generateReviewHTML(
+		div,
+		5,
+		5,
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		"A",
+		"Sally Smith",
+		"1/27/2024"
+	);
+
+	generateReviewHTML(
+		div,
+		5,
+		5,
+		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+		"A",
+		"Sally Smith",
+		"1/27/2024"
+	);
 
 	generateReviewHTML(
 		div,
