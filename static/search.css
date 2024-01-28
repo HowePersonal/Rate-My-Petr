@@ -33,6 +33,11 @@
 	font-size: 1.2rem;
 }
 
+input::placeholder{
+    color: white;
+    opacity: 0.5;
+}
+
 #quantity {
 	font-size: 14px;
 }

@@ -53,7 +53,8 @@
 	align-items: center;
 	column-gap: 15px;
 	margin-bottom: 15px;
-	width: 50%;
+	/* width: 50%; */
+    max-width: 777px;
 }
 
 .professor-label {
@@ -82,16 +83,20 @@
 
 .comment-input {
 	width: 100%;
-	font-size: 15px;
 }
 
 .submit-btn {
 	border: none;
 	border-radius: 5px;
 	padding: 10px;
-	font-size: 15px;
+	font-size: 20px;
 	background-color: #3498db;
 	color: white;
+}
+
+.submit-btn:hover {
+    background-color: #2980b9;
+    cursor: pointer;
 }
 
 .stu-review-container {
@@ -100,7 +105,11 @@
 	padding: 15px;
 	border-radius: 10px;
 	color: rgb(232, 232, 232);
-	width: 40%;
+    margin: auto;
+    width: 600px;
+}
+.second-row {
+    width: 100%;
 }
 
 .all-stu-review-container {
@@ -142,10 +151,11 @@
 }
 
 /* Styles for screens with a maximum width of 768px */
-@media (max-width: 1250px) {
+@media (max-width: 768px) {
 	.row-input {
 		row-gap: 15px;
 		flex-wrap: wrap;
+        justify-content: space-between;
 	}
 
 	.review-title {
@@ -163,27 +173,25 @@
 	.comment-content {
 		font-size: 14px;
 	}
-}
 
-@media (max-width: 1250px) {
-	.row-input {
-		row-gap: 15px;
-		flex-wrap: wrap;
-	}
+    .stu-review-container {
+        width: 80%;
+    }
 
-	.review-title {
-		font-size: 14px;
-	}
+    #professorDropdown{
+        width: 57%;
+    }
 
-	.review-label {
-		font-size: 12px;
-	}
+    #gradeDropdown{
+        width: 35%;
+        float: right;
+    }
 
-	.review-stats-row {
-		font-size: 12px;
-	}
-
-	.comment-content {
-		font-size: 12px;
-	}
+    /* .comment-input {
+        min-width: 0px;
+        width: 100%
+    }
+    .second-row {
+        width: 100%;
+    } */
 }
