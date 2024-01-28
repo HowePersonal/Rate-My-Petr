@@ -81,8 +81,8 @@ async function submitReview() {
         body: review
     })
     console.log(response)
-    data = await response.json();
-    console.log(data)
+    // data = await response;
+    // console.log(data)
 }
 
 function generateReviewHTML(
