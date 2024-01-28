@@ -23,13 +23,19 @@ function setProfessorInfo(data) {
     //     listItem.appendChild(courseLink)
     //     courseList.appendChild(listItem)
     // })
+    data = data.courses;
+    data.sort((a, b) => {
+        const courseNumberA = parseInt(a.courseNumber.replace(/\D/g, ''));
+        const courseNumberB = parseInt(b.courseNumber.replace(/\D/g, ''));
+        return courseNumberA - courseNumberB;
+    });
     let tbody = document.getElementById('classList');
     tbody.innerHTML = '';
-    for (let i = 0; i < data.courses.length; i++) {
+    for (let i = 0; i < data.length; i++) {
         let tr = document.createElement('tr');
         
         let td1 = document.createElement('td');
-        let course = data.courses[i].department + ' ' + data.courses[i].courseNumber;
+        let course = data[i].department + ' ' + data[i].courseNumber;
         td1.innerText = course;
         tr.appendChild(td1);
         
@@ -48,7 +54,7 @@ function setProfessorInfo(data) {
 
         // Add onclick event to the tr element
         tr.onclick = function() {
-            window.location.href = `/review?department=${data.courses[i].department}&number=${data.courses[i].courseNumber}`;
+            window.location.href = `/review?department=${data[i].department}&number=${data[i].courseNumber}`;
         };
 
         tbody.appendChild(tr);
