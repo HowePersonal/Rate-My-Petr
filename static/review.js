@@ -61,28 +61,34 @@ function generateReviewHTML(
 	nameDiv.textContent = `Prof : ${instructor}`;
 	dateDiv.textContent = date;
 
+	// Title Section of Review
 	const titleDiv = document.createElement("div");
 	titleDiv.appendChild(nameDiv);
 	titleDiv.appendChild(dateDiv);
 	titleDiv.classList.add("review-title");
 
+	// Comment Section of Review
 	const commentDiv = document.createElement("div");
+	const commentContent = document.createElement("div");
 	const commentLabel = document.createElement("div");
+
 	commentLabel.textContent = "Course Remarks";
+	commentContent.textContent = comment;
 	commentDiv.classList.add("review-comment");
-	commentDiv.textContent = comment;
-	// // Create <p> elements for the review details
-	// const difficultyPara = document.createElement("p");
-	// difficultyPara.textContent = `Difficulty: ${difficulty}`;
+	commentLabel.classList.add("review-label");
 
-	// const enjoymentPara = document.createElement("p");
-	// enjoymentPara.textContent = `Enjoyment: ${enjoyment}`;
+	commentDiv.appendChild(commentLabel);
+	commentDiv.appendChild(commentContent);
 
-	// const commentPara = document.createElement("p");
-	// commentPara.textContent = `Comment: ${comment}`;
+	// Rating Section of Review
+	const lowerRow = document.createElement("div");
+	const gradeDiv = document.createElement("div");
+	const enjoymentDiv = document.createElement("div");
+	const difficultyDiv = document.createElement("div");
 
-	// const gradePara = document.createElement("p");
-	// gradePara.textContent = `Grade: ${grade}`;
+	gradeDiv.textContent = grade;
+	enjoymentDiv.textContent = enjoyment;
+	difficultyDiv.textContent = difficulty;
 
 	// // Append all the elements to the review <div>
 	// reviewDiv.appendChild(instructorHeading);
