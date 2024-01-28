@@ -41,7 +41,7 @@ def insertRating():
         return "Successful insertion"
 
     except Exception as e:
-        return "Unsuccessful insertion"
+        return e
 
 @app.route('/api/deleteRating', methods=['POST'])
 def deleteRating():

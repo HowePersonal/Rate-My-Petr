@@ -1,8 +1,8 @@
 .navbar{
     background-color : #0064A4;
     color : white;
-    padding-bottom: 30px;
-    padding-top: 30px;
+
+    height: 75px;
     font-family: Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
     display: flex;
     justify-content: center;
@@ -24,13 +24,13 @@
     color : #ffd200;
     /* text-align: center; */
     margin: auto;
-    font-size: x-large;
+    font-size: xx-large;
     text-decoration: none;
     transition: font-size 0.2s ease;
 }
 
 .nav-title:hover{
-    font-size: xx-large;
+    font-size: 36px;
     cursor: pointer;
 }
     

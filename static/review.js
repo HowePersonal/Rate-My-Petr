@@ -3,6 +3,7 @@ const urlParams = new URLSearchParams(window.location.search);
 // Extract department and number from URL params
 const departmentParam = urlParams.get("department");
 const numberParam = urlParams.get("number");
+const classId = departmentParam + numberParam;
 
 console.log("Department Param:", departmentParam);
 console.log("Number Param:", numberParam);
@@ -13,7 +14,9 @@ function setProfs() {
 
 	// Clear existing options
 	selectDropdown.innerHTML = "";
-
+    const option = document.createElement("option");
+    option.textContent = 'Select Prof';
+    selectDropdown.appendChild(option);
 	// Add options for each instructor
 	DATA.instructors.forEach((instructor) => {
 		const option = document.createElement("option");
@@ -39,8 +42,47 @@ async function fetchClass() {
 	setProfs();
 }
 
-function submitReview() {
-	console.log("submit");
+function findProfFromID(id) {
+    return DATA.instructors.find((instructor) => instructor.ucinetid === id);
+}
+// function findIdFromProf(prof) {
+//     return DATA.instructors.find((instructor) => instructor.name === prof);
+// }
+
+async function submitReview() {
+    const professorDropdown = document.getElementById("professorDropdown");
+    const gradeDropdown = document.getElementById("gradeDropdown");
+    const difficultyInput = document.getElementById("difficulty");
+    const enjoymentInput = document.getElementById("enjoyment");
+    const commentTextarea = document.getElementById("comment");
+ 
+    const instructorId = professorDropdown.value;
+    const grade = gradeDropdown.value;
+    const difficultyRating = difficultyInput.value;
+    const enjoymentRating = enjoymentInput.value;
+    const comment = commentTextarea.value;
+
+    // Create the review object
+    const review = {
+        instructorId,
+        grade,
+        difficultyRating,
+        enjoymentRating,
+        comment,
+        classId
+    };
+    console.log(review)
+    // Perform the POST request to submit the review
+    const response = await fetch("api/insertRating", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(review)
+    })
+    console.log(response)
+    data = await response.json();
+    console.log(data)
 }
 
 function generateReviewHTML(

@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="../static/search.css" />
 
 		<title>RateMyPeter</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="../static/data.js" defer></script>
 		<script src="../static/search.js" defer></script>
 	</head>
@@ -14,9 +15,9 @@
 	<body>
 		<div class="navbar">
 			<a class="nav-title" href="search.html">RateMyPeter</a>
-			<div class="img-container">
+			<!-- <div class="img-container">
 				<img src="../assets/ptr.png" alt="PetrSticker" style = "width: 5%">
-			</div>
+			</div> -->
 			
 		</div>
 		
@@ -30,7 +31,7 @@
 			<!-- Course Code # input-->
 			<div class="number-input">
 				<input
-					placeholder="Course Number"
+					placeholder="Number"
 					type="text"
 					id="courseNumber"
 					name="courseNumber" />
@@ -41,19 +42,18 @@
 		</div>
 
 		<!-- Course Listings -->
-		<div class="course-list-container">
+		<div class="course-list-container" id="course-list-container" style="display: none;">
 			<table class="course-list">
 				<thead>
 					<tr>
-						<th>Code</th>
-						<th>Name</th>
+						<th>Course</th>
 						<th>Difficulty</th>
 						<th>Enjoyment</th>
 						<th>Reviews</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
+				<tbody id="classList">
+					<!-- <tr>
 						<td>001</td>
 						<td>HTML</td>
 						<td>Easy</td>
@@ -73,7 +73,7 @@
 						<td>Hard</td>
 						<td>High</td>
 						<td>120</td>
-					</tr>
+					</tr> -->
 					<!-- Add more rows as needed -->
 				</tbody>
 			</table>
