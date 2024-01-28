@@ -29,9 +29,11 @@ async function generateClassList(department, num){
     let url = 'https://api-next.peterportal.org/v1/rest/courses?'
 
     if (department.length > 0){
+        department = encodeURIComponent(department); // Encode the department value
         url += 'department=' + department;
     }
     else if (num.length > 0){
+        num = encodeURIComponent(num);
         url += 'courseNumber=' + num;
     }
     const response = await fetch(url, {

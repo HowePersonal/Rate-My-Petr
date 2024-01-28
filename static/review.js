@@ -15,6 +15,7 @@ function setProfs() {
 	// Clear existing options
 	selectDropdown.innerHTML = "";
     const option = document.createElement("option");
+    option.value = '';
     option.textContent = 'Select Prof';
     selectDropdown.appendChild(option);
 	// Add options for each instructor
@@ -62,6 +63,20 @@ async function submitReview() {
     const enjoymentRating = enjoymentInput.value;
     const comment = commentTextarea.value;
 
+    let range = ['1', '2', '3', '4', '5'];
+    if (!range.includes(difficultyRating) || !range.includes(enjoymentRating)){
+        alert("Please enter a rating between 1 and 5.");
+        return;
+    }
+    console.log(instructorId)
+    if (instructorId.length == 0){
+        alert("Please select a professor.");
+        return;
+    }
+    if (grade.length == 0){
+        alert("Please select a grade.");
+        return;
+    }
     // Create the review object
     const review = {
         instructorId,
@@ -171,7 +186,6 @@ async function loadReviews() {
         let review = data[i];
         console.log(review)
         let prof = findProfFromID(review.instructor_id);
-        console.log(prof, review)
         const addedDate = new Date(review.added_timestamp);
         const formattedDate = addedDate.toLocaleDateString();
         generateReviewHTML(
