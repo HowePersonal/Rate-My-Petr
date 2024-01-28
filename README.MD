@@ -1,8 +1,4 @@
-Im using python 3.10.6 any version close to that should be fine
+# RATE MY PETR
+## A website to allow UCI students to give ratings to classes for other students to see.
 
-run the testing.py script to run the code (DO NOT CHANGE THIS FILE)
-
-
-PUT HTML IN TEMPLATES
-
-PUT CSS AND JS IN STATIC
+# Website: https://www.ratemypetr.com/
