@@ -20,6 +20,7 @@ def serve_frontend(filename):
     try:
         return render_template(filename)
     except:
+        return 'what'
         return render_template('pageNotFound.html')
 
 # @app.route('/professor/<professorNetId>')
@@ -36,8 +37,8 @@ def insertRating():
         comment = data['comment']
         grade = data['grade']
         instructor_id = data['instructorId']
+        print(class_id, enjoyment_rating, difficulty_rating, comment, grade, instructor_id)
         db.insertRating(class_id, str(enjoyment_rating), str(difficulty_rating), comment, grade, instructor_id)
-        
         return "Successful insertion"
 
     except Exception as e:
