@@ -2,7 +2,7 @@ const urlParams = new URLSearchParams(window.location.search);
 
 // Extract department and number from URL params
 const departmentParam = urlParams.get("department");
-const numberParam = urlParams.get("number");
+const numberParam = urlParams.get("number").toUpperCase();
 const classId = departmentParam + numberParam;
 
 console.log("Department Param:", departmentParam);

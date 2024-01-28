@@ -5,7 +5,37 @@ const professorNetID = urlParams.get('profnetid');
 const professorData = {}
 console.log('Professor NetID Param:', professorNetID);
 
-function setProfessorInfo(data) {
+async function setProfessorInfo(data) {
+    let url = 'api/getInstructorRatings/' + professorNetID
+    const response = await fetch(url, {
+        method: 'GET'
+    });
+    let courseAvgs = {}
+    classData = await response.json()
+    console.log(classData)
+    for (let i = 0; i < classData.length; i++){
+        console.log(classData[i].class_id)
+        console.log(i)
+        console.log(courseAvgs)
+        console.log(!(classData[i].class_id in courseAvgs))
+        if (!(classData[i].class_id in courseAvgs)){
+            courseAvgs[classData[i].class_id] = [classData[i].difficulty_rating, classData[i].enjoyment_rating, 1, 1]
+        }else{
+            courseAvgs[classData[i].class_id][0] += classData[i].difficulty_rating
+            courseAvgs[classData[i].class_id][1] += classData[i].enjoyment_rating
+            courseAvgs[classData[i].class_id][2] += 1
+            courseAvgs[classData[i].class_id][3] += 1
+        }
+    }
+    for (let classId in courseAvgs) {
+        let avgDifficulty = courseAvgs[classId][0] / courseAvgs[classId][2];
+        let avgEnjoyment = courseAvgs[classId][1] / courseAvgs[classId][2];
+        courseAvgs[classId][0] = avgDifficulty;
+        courseAvgs[classId][1] = avgEnjoyment;
+    }
+    console.log(courseAvgs)
+
+
     const professorNameBox = document.getElementById('professorName')
     const professorTitleBox = document.getElementById('professorTitle')
     const courseList = document.getElementById('courseList')
@@ -15,14 +45,6 @@ function setProfessorInfo(data) {
     professorNameBox.innerText = data['name']
     professorTitleBox.innerText = data['title']
 
-    // data.courses.forEach(course => {
-    //     const listItem = document.createElement('li')
-    //     const courseLink = document.createElement('a')
-    //     courseLink.href = "/review?" + "department=" + course.department + "&number=" + course.courseNumber
-    //     courseLink.textContent = course.department + " " + course.courseNumber + " - " + course.title
-    //     listItem.appendChild(courseLink)
-    //     courseList.appendChild(listItem)
-    // })
     data = data.courses;
     data.sort((a, b) => {
         const courseNumberA = parseInt(a.courseNumber.replace(/\D/g, ''));
@@ -38,17 +60,21 @@ function setProfessorInfo(data) {
         let course = data[i].department + ' ' + data[i].courseNumber;
         td1.innerText = course;
         tr.appendChild(td1);
-        
+
+        let avgs = ['N/A', 'N/A','N/A','N/A']
+        if (data[i].department + data[i].courseNumber in courseAvgs){
+            avgs = courseAvgs[data[i].department + data[i].courseNumber]
+        }
         let td2 = document.createElement('td');
-        td2.innerText = 'N/A'
+        td2.innerText = avgs[0];
         tr.appendChild(td2);
 
         let td3 = document.createElement('td');
-        td3.innerText = 'N/A'
+        td3.innerText = avgs[1];
         tr.appendChild(td3);
 
         let td4 = document.createElement('td');
-        td4.innerText = 'N/A'
+        td4.innerText = avgs[3];
         tr.appendChild(td4);
         tbody.appendChild(tr);
 
