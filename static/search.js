@@ -107,7 +107,7 @@ async function generateClassList(department, num){
 function searchClass(e){
     let department = encodeURIComponent(document.getElementById('menu').value);
     let num = encodeURIComponent(document.getElementById('courseNumber').value);
-    console.log(department, num)
+    department = department.replace('%20', '');
     if (department.length < 1 && num.length < 1){
         alert("Please enter a department and/or a course number.");
         return;

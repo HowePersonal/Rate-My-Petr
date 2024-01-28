@@ -195,3 +195,15 @@
         width: 100%;
     } */
 }
+
+a{
+    text-decoration: none;
+    color: white;
+    text-decoration: underline;
+
+    transition: font-size 0.2s ease;
+}
+
+a:hover{
+    font-size: 22px;
+}
