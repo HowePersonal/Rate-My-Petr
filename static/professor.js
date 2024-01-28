@@ -30,8 +30,8 @@ async function setProfessorInfo(data) {
     for (let classId in courseAvgs) {
         let avgDifficulty = courseAvgs[classId][0] / courseAvgs[classId][2];
         let avgEnjoyment = courseAvgs[classId][1] / courseAvgs[classId][2];
-        courseAvgs[classId][0] = avgDifficulty;
-        courseAvgs[classId][1] = avgEnjoyment;
+        courseAvgs[classId][0] = avgDifficulty.toFixed(2);
+        courseAvgs[classId][1] = avgEnjoyment.toFixed(2);
     }
     console.log(courseAvgs)
 
@@ -60,10 +60,11 @@ async function setProfessorInfo(data) {
         let course = data[i].department + ' ' + data[i].courseNumber;
         td1.innerText = course;
         tr.appendChild(td1);
-
+        // console.log(data[i].department.replace(' ', '') + data[i].courseNumber)
         let avgs = ['N/A', 'N/A','N/A',0]
-        if (data[i].department + data[i].courseNumber in courseAvgs){
-            avgs = courseAvgs[data[i].department + data[i].courseNumber]
+        if (data[i].department.replace(' ', '') + data[i].courseNumber in courseAvgs){
+            avgs = courseAvgs[data[i].department.replace(' ', '') + data[i].courseNumber]
+            console.log(avgs)
         }
         let td2 = document.createElement('td');
         td2.innerText = avgs[0];
