@@ -9,6 +9,19 @@ console.log("Department Param:", departmentParam);
 console.log("Number Param:", numberParam);
 DATA = {};
 
+function setMessageInLocal(messageId){
+    console.log(messageId)
+    localStorage.setItem(departmentParam + classId, messageId);
+    console.log(localStorage.getItem(departmentParam + classId));
+}
+
+function getMessageInLocal(){
+    if (localStorage.getItem(departmentParam + classId) == null){
+        return "";
+    }else{
+        return localStorage.getItem(departmentParam + classId);
+    }
+}
 function setProfs() {
 	const selectDropdown = document.getElementById("professorDropdown");
 
@@ -97,7 +110,11 @@ async function submitReview() {
 	});
 	console.log(response);
 	if (response.status === 200) {
+        let id = await response.json();
+        setMessageInLocal(id.insertedId);
 		alert("Review submitted successfully!");
+        location.reload();
+
 	} else {
 		alert("Something went wrong. Please try again.");
 	}
@@ -191,15 +208,27 @@ async function loadReviews() {
 		let prof = findProfFromID(review.instructor_id);
 		const addedDate = new Date(review.added_timestamp);
 		const formattedDate = addedDate.toLocaleDateString();
-		generateReviewHTML(
-			div,
-			review.difficulty_rating,
-			review.enjoyment_rating,
-			review.comment,
-			review.grade,
-			prof.name,
-			formattedDate
-		);
+        if (review.id == getMessageInLocal()){
+            
+            document.getElementById("reviewHeader").innerText = "Thanks for submitting a review!";
+            document.getElementById('submitReview').style.display = 'none'
+
+            document.getElementById('professorDropdown').value = prof.ucinetid;
+            document.getElementById('gradeDropdown').value = review.grade;
+            document.getElementById('difficulty').value = review.difficulty_rating;
+            document.getElementById('enjoyment').value = review.enjoyment_rating;
+            document.getElementById('comment').value = review.comment;
+        }else{
+            generateReviewHTML(
+                div,
+                review.difficulty_rating,
+                review.enjoyment_rating,
+                review.comment,
+                review.grade,
+                prof.name,
+                formattedDate
+            );
+        }
 	}
 }
 
