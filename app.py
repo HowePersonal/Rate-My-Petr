@@ -9,18 +9,22 @@ import math
 app = Flask(__name__)
 db = database.database()
 
-#SERVER HTML FILES
 @app.route('/')
-def hello():
+def serve_search():
     return render_template('search.html')
 
-@app.route('/<path:filename>')
-def serve_frontend(filename):
-    print(filename)
-    try:
-        return render_template(filename)
-    except:
-        return render_template('pageNotFound.html')
+#SERVER HTML FILES
+@app.route('/review')
+def serve_review():
+    return render_template('review.html')
+
+@app.route('/professor')
+def serve_professor():
+    return render_template('professor.html')
+
+@app.errorhandler(404) 
+def default_handler(e):
+    return render_template('pageNotFound.html')
 
 # @app.route('/professor/<professorNetId>')
 # def serve_professor(professorNetId):

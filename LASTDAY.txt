@@ -15,3 +15,4 @@ KYLE AND JAMES:
 GABE:
 - Local storage stuff
 - PURGE DB
+- ICS AND LETTERS DO NOT WORK

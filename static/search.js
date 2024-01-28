@@ -11,12 +11,13 @@ window.onload = function() {
 
 
 async function verifyClassExists(department, num){
-    let url = 'https://api-next.peterportal.org/v1/rest/courses/' + department + num
+    let url = 'https://api-next.peterportal.org/v1/rest/courses/' + department.toUpperCase() + num.toUpperCase();
     const response = await fetch(url, {
         method: 'GET'
     });
 
     data = await response.json()
+    console.log(data, url)
     if (data.statusCode % 100 == 4){
         alert("Class does not exist.")
         return;
@@ -29,11 +30,9 @@ async function generateClassList(department, num){
     let url = 'https://api-next.peterportal.org/v1/rest/courses?'
 
     if (department.length > 0){
-        department = encodeURIComponent(department); // Encode the department value
         url += 'department=' + department;
     }
     else if (num.length > 0){
-        num = encodeURIComponent(num);
         url += 'courseNumber=' + num;
     }
     const response = await fetch(url, {
@@ -84,8 +83,8 @@ async function generateClassList(department, num){
 }
 
 function searchClass(e){
-    let department = document.getElementById('menu').value;
-    let num = document.getElementById('courseNumber').value;
+    let department = encodeURIComponent(document.getElementById('menu').value);
+    let num = encodeURIComponent(document.getElementById('courseNumber').value);
     console.log(department, num)
     if (department.length < 1 && num.length < 1){
         alert("Please enter a department and/or a course number.");
