@@ -78,7 +78,7 @@ async function submitReview() {
         headers: {
             "Content-Type": "application/json"
         },
-        body: review
+        body: JSON.stringify(review)
     })
     console.log(response)
     // data = await response;

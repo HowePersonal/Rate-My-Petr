@@ -21,7 +21,7 @@ async function verifyClassExists(department, num){
         alert("Class does not exist.")
         return;
     } 
-    window.location.href = `/review.html?department=${department}&number=${num}`;
+    window.location.href = `/review?department=${department}&number=${num}`;
     
 }
 
@@ -74,7 +74,7 @@ async function generateClassList(department, num){
 
         // Add onclick event to the tr element
         tr.onclick = function() {
-            window.location.href = `/review.html?department=${data[i].department}&number=${data[i].courseNumber}`;
+            window.location.href = `/review?department=${data[i].department}&number=${data[i].courseNumber}`;
         };
 
         tbody.appendChild(tr);

@@ -18,7 +18,7 @@ function setProfessorInfo(data) {
     data.courses.forEach(course => {
         const listItem = document.createElement('li')
         const courseLink = document.createElement('a')
-        courseLink.href = "/review.html?" + "department=" + course.department + "&number=" + course.courseNumber
+        courseLink.href = "/review?" + "department=" + course.department + "&number=" + course.courseNumber
         courseLink.textContent = course.department + " " + course.courseNumber + " - " + course.title
         listItem.appendChild(courseLink)
         courseList.appendChild(listItem)
