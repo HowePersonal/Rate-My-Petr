@@ -28,7 +28,7 @@ async function verifyClassExists(department, num){
 
 async function generateClassList(department, num){
     let url = 'https://api-next.peterportal.org/v1/rest/courses?'
-    let backendAPIUrl = 'http://127.0.0.1:5000/api/'
+    let backendAPIUrl = 'api/'
     if (department.length > 0){
         url += 'department=' + department;
         backendAPIUrl += 'getDepartmentRatings/' + department
