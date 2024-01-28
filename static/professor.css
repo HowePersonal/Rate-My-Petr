@@ -14,6 +14,7 @@ body {
 
 #courseBox {
     margin: 20px;
+    text-align: center; /* Center the content within #courseBox */
 }
 
 h1 {

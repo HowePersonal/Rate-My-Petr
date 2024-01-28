@@ -95,6 +95,20 @@ def getClassStatistics(classId):
             avg_difficulty += int(record["difficulty_rating"])
         return {"avg_enjoyment": math.floor(avg_enjoyment/len(rating_records)), "avg_difficulty": math.floor(avg_difficulty/len(rating_records))}
     except Exception as e:
-        return "Unsuccessfull when trying to get class statistics"
+        return {"avg_enjoyment": "N/A", "avg_difficulty": "N/A"}
+
+@app.route('/api/getInstructorStatistics/<instructorId>', methods=['GET'])
+def getInstructorStatistics(instructorId):
+    try:
+        rating_records = db.getInstructorRatings(instructorId)
+        avg_enjoyment = 0
+        avg_difficulty = 0
+        for record in rating_records:
+            avg_enjoyment += int(record["enjoyment_rating"])
+            avg_difficulty += int(record["difficulty_rating"])
+        return {"avg_enjoyment": math.floor(avg_enjoyment/len(rating_records)), "avg_difficulty": math.floor(avg_difficulty/len(rating_records))}
+    except Exception as e:
+        return {"avg_enjoyment": "N/A", "avg_difficulty": "N/A"}
+
 #ACT LIKE THIS IS THE MAIN FUNCTION DW ABOUT IT
 # setClasses()
