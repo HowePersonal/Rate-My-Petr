@@ -7,14 +7,13 @@
 		<link rel="stylesheet" href="../static/review.css" />
 
 		<title>RateMyPeter</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="../static/data.js" defer></script>
 		<script src="../static/review.js" defer></script>
 	</head>
 
 	<body>
 		<div class="navbar">
-			<a class="nav-title" href="/">RateMyPetr</a>
+			<a class="nav-title" href="search.html">RateMyPeter</a>
 		</div>
 		<div id="userComment">
 			<div class="review-container">
@@ -22,6 +21,7 @@
 
 				<!-- Input Row -->
 				<div class="row-input">
+					
 					<!-- Professor Select -->
 					<select
 						class="prof-drop-down"
@@ -29,7 +29,6 @@
 
 					<!-- Grade Selection -->
 					<select class="grade-drop-down" id="gradeDropdown">
-                        <option value="">Grade</option>
 						<option value="A">A</option>
 						<option value="B">B</option>
 						<option value="C">C</option>
@@ -52,13 +51,14 @@
 						name="number-input"
 						placeholder="Enjoyment (1-5)" />
 				</div>
-				<div class="row-input second-row">
+				<div class="row-input">
 					<textarea
 						class="comment-input"
 						type="text"
 						id="comment"
 						name="comment-input"
-						placeholder="What did you think about the class?"></textarea>
+						placeholder="What did you think about the class?">
+					</textarea>
 				</div>
 				<button
 					class="submit-btn"
