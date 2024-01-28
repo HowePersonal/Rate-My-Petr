@@ -1,92 +1,74 @@
+/* Input Container */
 .input-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding-top: 5px;
-	gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    gap: 10px;
+}
 
-	/* border: 2px solid red; */
+/* Form Elements */
+.drop-menu,
+.number-input input,
+#quantity,
+.search-button {
+    background-color: #2d2d2d;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    outline: none;
 }
 
 .drop-menu {
-	background-color: rgb(91, 91, 91);
-	border-radius: 10px;
-	font-size: 18px;
+    width: 200px;
 }
-.number-input input{
-	background-color: rgb(91, 91, 91);
-	border: none;
-	border-radius: 10px;
-	padding: 5px;
 
-	outline: none;
-	color: white;
-	font-size: 18px;
+.number-input input {
+    width: 50px;
 }
 
 #quantity {
-	width: 50px; /* Adjust the width as needed */
-	padding: 5px;
-	font-size: 16px;
+    font-size: 14px;
 }
 
 .search-button {
-	background-color: #3498db; /* Blue color */
-	color: #fff; /* White text */
-	padding: 10px 15px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
+    background-color: #3498db;
+    cursor: pointer;
 }
 
-/* Container */
+/* Course List Container */
 .course-list-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px;
 }
 
-.course-list-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: white;
-	
-	font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
-		monospace;
-}
-
-/* Add spacing to the table and its elements */
-.course-list-container {
-    margin: 20px; /* Adjust the margin as needed */
-}
-
+/* Course List Table */
 .course-list {
     width: 100%;
-	border-collapse: collapse;
-    /* overflow: hidden; */
-	/* border: 1px solid white; */
-	border-radius: 15px;
-	/* border-radius: 15px; */
-	
+    border-collapse: collapse;
+    border-radius: 15px;
 }
 
 .course-list th, .course-list td {
-    padding: 10px; /* Adjust the padding as needed */
+    padding: 12px;
     text-align: left;
-    border: 1px solid #ddd; /* Add borders to cells */
-    /* border-radius: 15px; */
-	
+    border: 1px solid #ddd;
 }
 
-/* Style the table header */
+/* Table Header */
 .course-list th {
-    background-color: rgb(40, 39, 39);
-	
+    background-color: #282828;
+    color: #ffffff;
 }
 
-
-/* Hover effect for rows */
+/* Hover Effect for Rows */
 .course-list tbody tr:hover {
-    background-color: rgb(64, 64, 64);
+    background-color: #404040;
 }

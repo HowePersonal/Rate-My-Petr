@@ -5,6 +5,19 @@
     padding-top: 30px;
     font-family: Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Removes extra space below inline images */
+    margin: 0 auto; /* Center the image if needed */
+}
+
+.img-container{
+    width:20%;
 }
 
 .nav-title{
