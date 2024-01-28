@@ -51,9 +51,10 @@ async function fetchClass() {
 	});
 
 	data = await response.json();
-	DATA = data.payload;
+	DATA = await data.payload;
 
 	setProfs();
+    loadReviews();
 }
 
 function findProfFromID(id) {
@@ -236,7 +237,7 @@ function main() {
 	fetchClass();
 	// let div = document.getElementById("reviews");
 	// div.classList.add("all-stu-review-container");
-	loadReviews();
+	// loadReviews();
 	// generateReviewHTML(
 	// 	div,
 	// 	5,

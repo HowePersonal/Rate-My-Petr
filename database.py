@@ -10,8 +10,9 @@ class database:
     
     def __init__(self):
         self.conn = psycopg2.connect(
-        host="dpg-cmq75eo21fec739kca90-a.frankfurt-postgres.render.com",
-        database="petrdb",
+        host="dpg-cmrarri1hbls73fodgmg-a.oregon-postgres.render.com",
+        #postgres://root:Q5gq7quc1Kq6MiYPk2Z2I6uSaXtbE4dQ@dpg-cmrarri1hbls73fodgmg-a.oregon-postgres.render.com/petr
+        database="petr",
         user=os.getenv('DB_USERNAME'),
         password=os.getenv('DB_PASSWORD'),
         port="5432")
