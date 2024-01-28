@@ -53,8 +53,6 @@
 	align-items: center;
 	column-gap: 15px;
 	margin-bottom: 15px;
-	/* width: 900px;
-    min-width: 0px; */
     width: 50%;
 }
 
@@ -140,5 +138,5 @@
 
 
 textarea {
-    height: 100px; /* Increase the height to make it bigger */
+    /* height: 100px; */
 }

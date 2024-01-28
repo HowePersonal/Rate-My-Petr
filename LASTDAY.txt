@@ -1,0 +1,18 @@
+HOWARD:
+- When inserting into the db return the message id
+- Get averages for all courses filtering by department OR number (return multiple class averages)
+- Get averages for all courses filtering by professor netid
+- YOU DO NOT NEED AVERAGES FOR PROFESSOR PAGE FRONTEND CALCULATES IT 
+
+KYLE AND JAMES:
+- Make everything fit to a screen of 320px plus (smallest screen 320px)
+- Style the professor page / anything that looks really bland
+- Make sure no input field get small enough
+    - Placeholder text should ideally fit no matter what
+    - Don't make input fields too small with plenty of space
+
+
+GABE:
+- ICS SEARCH IS FUCKED
+- MAKE SURE LETTERS WORK IN NUMBER SEARCH
+- Local storage stuff

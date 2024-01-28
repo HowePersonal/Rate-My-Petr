@@ -45,9 +45,9 @@ async function fetchClass() {
 function findProfFromID(id) {
     return DATA.instructors.find((instructor) => instructor.ucinetid === id);
 }
-// function findIdFromProf(prof) {
-//     return DATA.instructors.find((instructor) => instructor.name === prof);
-// }
+function findIdFromProf(prof) {
+    return DATA.instructors.find((instructor) => instructor.name === prof);
+}
 
 async function submitReview() {
     const professorDropdown = document.getElementById("professorDropdown");
@@ -81,8 +81,11 @@ async function submitReview() {
         body: JSON.stringify(review)
     })
     console.log(response)
-    // data = await response;
-    // console.log(data)
+    if (response.status === 200) {
+        alert("Review submitted successfully!");
+    }else{
+        alert("Something went wrong. Please try again.");
+    }
 }
 
 function generateReviewHTML(
@@ -99,8 +102,11 @@ function generateReviewHTML(
 
 	const nameDiv = document.createElement("div");
 	const dateDiv = document.createElement("div");
+    const profLink = document.createElement("a");
+    profLink.href = findIdFromProf(instructor);
+    
 
-	nameDiv.textContent = `Prof : ${instructor}`;
+	nameDiv.innerHTML = `Prof : <a href='professor?profnetid=${findIdFromProf(instructor).ucinetid}'>${instructor}</a>`;
 	dateDiv.textContent = date;
 
 	// Title Section of Review
@@ -150,40 +156,70 @@ function generateReviewHTML(
 	div.appendChild(reviewDiv);
 }
 
-function main() {
-	fetchClass();
-	let div = document.getElementById("reviews");
+async function loadReviews() {
+    let url ="api/getClassRatings/" + departmentParam + numberParam;
+	const response = await fetch(url, {
+		method: "GET",
+	});
+
+	data = await response.json();
+    console.log(data)
+    let div = document.getElementById("reviews");
 	div.classList.add("all-stu-review-container");
 
-	generateReviewHTML(
-		div,
-		5,
-		5,
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-		"A",
-		"Sally Smith",
-		"1/27/2024"
-	);
+    for (let i = 0; i < data.length; i++){
+        let review = data[i];
+        console.log(review)
+        let prof = findProfFromID(review.instructor_id);
+        console.log(prof, review)
+        const addedDate = new Date(review.added_timestamp);
+        const formattedDate = addedDate.toLocaleDateString();
+        generateReviewHTML(
+            div,
+            review.difficulty_rating,
+            review.enjoyment_rating,
+            review.comment,
+            review.grade,
+            prof.name,
+            formattedDate
+        );
+    }
+}
 
-	generateReviewHTML(
-		div,
-		5,
-		5,
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-		"A",
-		"Sally Smith",
-		"1/27/2024"
-	);
+function main() {
+	fetchClass();
+	// let div = document.getElementById("reviews");
+	// div.classList.add("all-stu-review-container");
+    loadReviews();
+	// generateReviewHTML(
+	// 	div,
+	// 	5,
+	// 	5,
+	// 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+	// 	"A",
+	// 	"Sally Smith",
+	// 	"1/27/2024"
+	// );
 
-	generateReviewHTML(
-		div,
-		5,
-		5,
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-		"A",
-		"Sally Smith",
-		"1/27/2024"
-	);
+	// generateReviewHTML(
+	// 	div,
+	// 	5,
+	// 	5,
+	// 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+	// 	"A",
+	// 	"Sally Smith",
+	// 	"1/27/2024"
+	// );
+
+	// generateReviewHTML(
+	// 	div,
+	// 	5,
+	// 	5,
+	// 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+	// 	"A",
+	// 	"Sally Smith",
+	// 	"1/27/2024"
+	// );
 }
 
 main();

@@ -60,15 +60,15 @@ async function generateClassList(department, num){
         tr.appendChild(td1);
         
         let td2 = document.createElement('td');
-        td2.innerText = '2'
+        td2.innerText = 'N/A'
         tr.appendChild(td2);
 
         let td3 = document.createElement('td');
-        td3.innerText = '3'
+        td3.innerText = 'N/A'
         tr.appendChild(td3);
 
         let td4 = document.createElement('td');
-        td4.innerText = '4'
+        td4.innerText = 'N/A'
         tr.appendChild(td4);
         tbody.appendChild(tr);
 

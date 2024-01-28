@@ -37,7 +37,6 @@ def insertRating():
         comment = data['comment']
         grade = data['grade']
         instructor_id = data['instructorId']
-        print(class_id, enjoyment_rating, difficulty_rating, comment, grade, instructor_id)
         db.insertRating(class_id, str(enjoyment_rating), str(difficulty_rating), comment, grade, instructor_id)
         return "Successful insertion"
 
@@ -76,7 +75,7 @@ def getClassRatings(classId):
         rating_records = db.getClassRatings(classId)
         return rating_records
     except Exception as e:
-        return "Unsuccessful when trying to get class ratings"
+        return []
     
 @app.route('/api/getInstructorRatings/<instructorId>', methods=['GET'])
 def getInstructorRatings(instructorId):
@@ -84,8 +83,14 @@ def getInstructorRatings(instructorId):
         rating_records = db.getInstructorRatings(instructorId)
         return rating_records
     except Exception as e:
-        return "Unsuccessful when trying to get instructor ratings"
+        return []
     
+
+#TODO: IMPLEMENT THIS
+#Be able to search for class statistics by department ONLY
+#Be able to search for class statistics by number ONLY
+#http://127.0.0.1:5000/api/getClassStatistics?department=compsci
+
 @app.route('/api/getClassStatistics/<classId>', methods=['GET'])
 def getClassStatistics(classId):
     try:
@@ -99,6 +104,8 @@ def getClassStatistics(classId):
     except Exception as e:
         return {"avg_enjoyment": "N/A", "avg_difficulty": "N/A"}
 
+#TODO: IMPLEMENT THIS
+# GET STAT AVERAGES FOR EACH INDIVIDUAL CLASS ASSOCIATED WITH AN INSTRUCTOR
 @app.route('/api/getInstructorStatistics/<instructorId>', methods=['GET'])
 def getInstructorStatistics(instructorId):
     try:

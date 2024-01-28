@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RateMyPeter Professor</title>
+    <link rel="stylesheet" href="../static/search.css" />
     <link rel="stylesheet" href="../static/professor.css" />
     <link rel="stylesheet" href="../static/nav.css"/>
     <script src="../static/professor.js" defer></script>
@@ -15,11 +16,40 @@
     <div id="infoBox">
         <h1 id="professorName"></h1>
         <p id="professorTitle"></p>
+        <div id="profStats">
+            <div class="stat">
+                <h3>Average Difficulty</h3>
+                <p id="avgDifficulty"></p>
+            </div>
+            <div class="stat">
+                <h3>Average Enjoyment</h3>
+                <p id="avgEnjoyment"></p>
+            </div>
+            <div class="stat">
+                <h3>Review Count</h3>
+                <p id="reviewCount"></p>
+            </div>
+        </div>
     </div>
 
-    <div id="courseBox">
+    <!-- <div id="courseBox">
         <h2>Courses</h2>
         <ul id="courseList"></ul>
+    </div> -->
+    <div class="course-list-container" id="course-list-container">
+        <table class="course-list">
+            <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Difficulty</th>
+                    <th>Enjoyment</th>
+                    <th>Reviews</th>
+                </tr>
+            </thead>
+            <tbody id="classList">
+
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
