@@ -112,13 +112,18 @@ function generateReviewHTML(
 	instructor,
 	date
 ) {
+	const profLink = document.createElement("a");
+	profLink.href = findIdFromProf(instructor);
+
 	// Create a new <div> element
 	const reviewDiv = document.createElement("div");
 
 	const nameDiv = document.createElement("div");
 	const dateDiv = document.createElement("div");
 
-	nameDiv.textContent = `Prof : ${instructor}`;
+	nameDiv.innerHTML = `Prof : <a href='professor?profnetid=${
+		findIdFromProf(instructor).ucinetid
+	}'>${instructor}</a>`;
 	dateDiv.textContent = date;
 
 	// Title Section of Review
